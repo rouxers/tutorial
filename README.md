@@ -1,1 +1,1 @@
-# tutorial
+# Roux Tutorial [![Build Status](https://travis-ci.com/rouxers/tutorial.svg?branch=master)](https://travis-ci.com/rouxers/tutorial)
