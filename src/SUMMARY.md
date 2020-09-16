@@ -1,4 +1,6 @@
 # Summary
 
-- [First Block](./first_block.md)
-- [Second Block](./second_block.md)
+[Introduction](./introduction.md)
+- [Beginners](./beginners.md)
+    - [First Block](./first-block-beginners.md)
+    - [Second Block](./second-block-beginners.md)
