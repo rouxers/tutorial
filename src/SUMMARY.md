@@ -1,6 +1,9 @@
 # Summary
 
 [Introduction](./introduction.md)
-- [Beginners](./beginners.md)
-    - [First Block](./first-block-beginners.md)
-    - [Second Block](./second-block-beginners.md)
+- [Beginners](./beginners/beginners.md)
+    - [First Block](./beginners/first-block.md)
+    - [Second Block](./beginners/second-block.md)
+- [Intermediate](./intermediate/intermediate.md)
+    - [First Block](./intermediate/first-block.md)
+    - [Second Block](./intermediate/second-block.md)
