@@ -28,6 +28,16 @@ This step should be fairly simple if you have a background in cubing, but it is 
 
 ## Approaches to solving FB
 
+### Summary
+
+Approach|Explanation
+-|-
+DL First|Solve the DL Piece first (for this guide, the blue-white edge), then solve the two remaining pairs.
+Line-Line 2x2x1 + Pair|Build a `2x2x1` square by using a form of `D` or `Uw` move at the end, then solve the last remaining pair.
+S Move Insert|Using an `S` move to make a square or a full FB
+Line-Line|Solving two `1x1x3` lines then solving them using a form of `D` or `Uw` moves.
+
+
 ### DL First
 
 One fairly simple approach is to solve the DL piece first (like you would in the cross), then solve the other 2 pairs individually. This approach is quite useful but don't rely on it to give you the best solutions all the time.
@@ -68,7 +78,9 @@ This approach is very rudimentary but can get you going (for now).
 
 ### Line-Line 2x2x1 + Pair
 
-**Example 2:**
+This is fairly hard to explain in words, but these examples should clear up doubts.
+
+**Example 1:**
 
 <div id="inf4">
 <script type="text/javascript">
@@ -82,6 +94,8 @@ This approach is very rudimentary but can get you going (for now).
 For this example, the line-line already given by the scramble is the blue-red-white pair with two white pieces on bottom. This means that to get to a `2x2x1` square, all that needs to be done is to solve the blue center and the blue-red edge, which can be done either by doing some form of a `D` move or some form of a `u` move (which is used in the example shown above). The initial `R'` is done to setup the next pair - if you can't see this in inspection yet, you don't need to worry about it for now - then `U' R'` solves the square by pairing the center with the edge, then doing a `u` move solves a 2x2x1 square. Afterwards, the other pair is solved. (This pair could also be done with `U M' r B'`)
 
 </div>
+
+**Example 2:**
 
 <div id="inf5">
 <script type="text/javascript">
@@ -98,7 +112,7 @@ In this example, we have a center + edge solved, so we just need to solve the ed
 
 ### S Move Insert
 
-**Example 2:**
+**Example 1:**
 
 <div id="inf6">
 <script type="text/javascript">
@@ -117,7 +131,7 @@ In the example above, `M' U M'` is done to set up the edge and the center in a p
 
 ### Line-Line
 
-**Example 2:**
+**Example 1:**
 
 <div id="inf7">
 <script type="text/javascript">
@@ -133,6 +147,6 @@ The line-line approach is sometimes really useful, but forcing it usually doesn'
 For this case, `u2 F2` solves the edge `1x1x3` line, then `R' U' R` solves the corner `1x1x3` line, which can then be solved with a `D` move.
 </div>
 
-## Other Resources to look at for improvement:
+## Other Resources to look at for further improvements:
 
 - [book.rouxers.com's FB page](https://book.rouxers.com/fb.html)
