@@ -7,3 +7,5 @@
 - [Intermediate](./intermediate/intermediate.md)
     - [First Block](./intermediate/first-block.md)
     - [Second Block](./intermediate/second-block.md)
+    - [CMLL](./intermediate/cmll.md)
+    - [LSE](./intermediate/lse.md)
