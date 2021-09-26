@@ -2,6 +2,7 @@
 
 [Introduction](./introduction.md)
 - [Beginners](./beginners/beginners.md)
+    - [Notation](./beginners/notation.md)
     - [First Block](./beginners/first-block.md)
     - [Second Block](./beginners/second-block.md)
 - [Intermediate](./intermediate/intermediate.md)

@@ -1,0 +1,1 @@
+{"rule":"SOME_OF_THE","sentence":"^\\QSome of the direction of the moves might be counter-intuitive in the beginning\\E$"}
