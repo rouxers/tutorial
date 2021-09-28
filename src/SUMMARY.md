@@ -5,6 +5,8 @@
     - [Notation](./beginners/notation.md)
     - [First Block](./beginners/first-block.md)
     - [Second Block](./beginners/second-block.md)
+    - [CMLL](./beginners/cmll.md)
+    - [Last Six Edges](./beginners/lse.md)
 - [Intermediate](./intermediate/intermediate.md)
     - [First Block](./intermediate/first-block.md)
     - [Second Block](./intermediate/second-block.md)
