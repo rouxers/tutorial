@@ -37,12 +37,12 @@ Misoriented Edge/Bad Edge | Edge where the white/yellow sticker is **not** facin
 
 The general way to get to all edges oriented is to set up to an `arrow` case, where there are three misoriented edges on the top layer, and one misoriented edge on the bottom layer.
 
-If you look at the top layer's misoriented edges, you can see a sort of `V` shape, which sort of looks like an arrow. If you first point the tip of the arrow on top of the misoriented edge in the bottom layer (see the examples below), then move the misoriented edge on the bottom layer to the tip (essentially moving it to the `U` layer using an `M` move), then do a `U` or a `U'` (doesn't make a difference), and then do `M'` or `M`, you will then be able to solve the arrow case. This can be summarized in the steps below:
+If you look at the top layer's misoriented edges, you can see a sort of `V` shape, which sort of looks like an arrow. If you first point the tip of the arrow on top of the misoriented edge in the bottom layer (see the examples below), then move the misoriented edge on the bottom layer to the tip (essentially moving it to the `U` layer using an `M`/`M'` move), then do a `U` or a `U'` (doesn't make a difference), and then do `M'` or `M`, you will then be able to solve the arrow case. This can be summarized in the steps below:
 
-1. Move the tip of the arrow above the bottom misoriented edge
-2. Move the misoriented edge to the `U` layer using an `M` move
-3. Do a `U` or `U'`
-4. Do an `M` or `M'`
+1. Move the tip of the arrow above the bottom misoriented edge.
+2. Move the bottom misoriented edge to the `U` layer using an `M`/`M'` move.
+3. Do a `U` or `U'`.
+4. Do an `M` or `M'`.
 
 <div id="frontarrow">
 <script type="text/javascript">
@@ -64,7 +64,7 @@ If you look at the top layer's misoriented edges, you can see a sort of `V` shap
 </script>
 </div>
 
-Notice how in sum, doing the arrow case orients `4` misoriented edges? What that also can do is misorient `4` oriented edges, which would lead from other `EO` cases to the arrow itself, allowing you to get closer to the arrow case itself. However, there are multiple configurations of `4` misoriented edges on the cube, which is what the next 'algorithm' can help remedy:
+Notice how in sum, doing the arrow case orients `4` misoriented edges? What that also can do is misorient `4` oriented edges, which can lead from other `EO` cases to the arrow itself. However, there are multiple configurations of `4` misoriented edges on the cube, which is what the next 'algorithm' can help remedy:
 
 <div id="frontmu2m">
 <script type="text/javascript">
@@ -76,7 +76,7 @@ Notice how in sum, doing the arrow case orients `4` misoriented edges? What that
 </script>
 </div>
 
-If you look at the front two edges not part of your blocks, you can see that by doing `M' U2 M`, the position of them essentially swap. This can apply for misoriented edges too!
+If you look at the front two edges (yellow-red and yellow-white edges), you can see that by doing `M' U2 M`, they swap positions. This applies for misoriented edges too!
 
 <div id="frontmu2mmisoriented">
 <script type="text/javascript">
@@ -105,9 +105,9 @@ You can also do the swapping 'algorithm' from the back similarly to the arrow ca
 
 In general, you can simplify the swapping algorithm to steps very similar to arrow:
 
-1. Move the edge you want to swap above the bottom edge to swap
-2. Move the misoriented edge to the `U` layer using an `M` move
-3. Do a `U2`
+1. Move the edge you want to swap above the bottom edge to swap.
+2. Move the bottom edge to the `U` layer using an `M`/`M'` move.
+3. Do a `U2`.
 4. Undo the first `M` move you did by doing the opposite `M` move.
 
 ---
@@ -128,7 +128,7 @@ Knowing this information, let's try our hand at some LSE cases:
 </script>
 </div>
 
-First, check to see how many misoriented edges there are — 2
+First, check to see how many misoriented edges there are — 2.
 
 > Hint: the number of misoriented edges will ALWAYS be an even number; likewise for oriented edges.
 
@@ -136,9 +136,9 @@ Then, remember that your goal is to do the arrow alg such that you can get to 4 
 
 From the first angle in the visual, if you do an arrow in the front, you will end up flipping two oriented edges and two misoriented edges, leaving you with a total of two misoriented edges, which means that it isn't the correct angle. **However**, if you do an arrow from the back, you flip one misoriented edge and three oriented edges, which in total leads to four misoriented edges if you include the misoriented edge that does not get affected in the front.
 
-From the second angle, doing the arrow in the front leads to two misoriented edges, and doing it from the back leads to six misoriented edges, so we can ignore this angle
+From the second angle, doing the arrow in the front leads to two misoriented edges, and doing it from the back leads to six misoriented edges, so we can ignore this angle.
 
-The third angle is just a mirror of the first angle, so the same thing applies (just see for yourself)
+The third angle is just a mirror of the first angle, so the same thing applies (just see for yourself).
 
 In the fourth angle, if you do an arrow in the front, you end up flipping one misoriented edge and three oriented edges, leaving you with four misoriented edges in total. If you do an arrow in the back, you end also end up flipping one misoriented edge and three oriented edges, leaving you with four in total too.
 
@@ -186,7 +186,7 @@ Doing `M U2 M'` swaps the back two, making an arrow case. From there, `U2` sets 
 </script>
 </div>
 
-In this case, we start off with all the edges misoriented. From here, there's only one possible angle to do arrow from cause no matter what `U` move you do, you still have the same six misoriented edges.
+In this case, we start off with all the edges misoriented. You can do the arrow from any angle here, because no matter what `U` move you do, you still have the same six misoriented edges.
 
 <div id="case2-2">
 <script type="text/javascript">
@@ -293,6 +293,11 @@ In this case, `U'` will move the corners to the correct position:
 Small shortcut: you can actually do an `M2` to insert the first edge onto the `D` layer as long as your other edge isn't there. However, if you can't grasp this, stick with just doing the swapping moveset for now.
 
 ---
+
+## EO Flowchart
+
+In case you couldn't figure out how to solve a particular EO case, here is a simple flowchart (where lefty or righty M are for Rouxers who do M moves with their left or right hand respectively). Red-colored pieces are misoriented edges.
+![EO Flowchart](./EO_flowchart.png "EO Flowchart")
 
 ## Finishing the rest of the cube
 
