@@ -15,6 +15,8 @@ In this step, the goal is to solve the last six edges, which will actually end u
 ## Edge Orientation (EO)
 
 > If you want to use a flowchart instead (more memorization and less intuition but faster to get the hang of), use [this link here](https://rouxl.es/images/LSEEO.png). You don't need to know the difference between 'lefty' and 'righty' just yet — just pick one side and stick to it.
+> 
+> This visual is also shown after the EO section is finished.
 
 The first 'step' of LSE is to orient all the edges — making the white and yellow edges face either upwards or downwards. The colours on the other side of the edge does not matter for this step.
 
