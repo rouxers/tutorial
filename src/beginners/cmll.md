@@ -73,11 +73,19 @@ And inserting with `R U2 R'` puts the pair back in through another insertion.
     ('#ru2r');
 </script>
 
-So all that needs to be linked together is to just do one extra setup move in between the two cases and you have learned the algorithm.
+So all that needs to be linked together is to just do one extra setup move in between the two cases, and you have learned the algorithm.
 
 It's also reasonable to learn this by muscle memory/brute force, but I highly recommend trying to think of it as pair insertions, especially because it is easier to remember in the long term.
 
 If you look at the first visual though, the algorithm twists all but the bottom left corner clockwise, which means that your end goal in this step is to end up with **only 1 corner oriented**, from which you can then apply the `sune` algorithm either once or twice (depending on whether the corners need to be twisted counter-clockwise or clockwise) to orient all the corners.
+
+### Memorization Approach
+
+![](https://i.imgur.com/IIYopnA.png)
+
+To follow this visual, first look at how many misoriented corners you have, then look and see which case it corresponds to, then just do some pattern matching and execute the algorithm in the visual (all 3 cases use the same algorithm - they eventually reduce to the case where there's one corner oriented, which then leads to a case where we can solve corner orientation fully.)
+
+### Intuitive Approach
 
 How do we get there then? One approach would be to check all `4` different possibilities and see which one leads to you having just `1` oriented corner in total. Let's take a look at some examples:
 
@@ -129,14 +137,6 @@ Notice how after the algorithm is done, there is still only 1 corner oriented? F
     ('#S1');
 </script>
 
----
-
-A more formulaic approach to the step above would be to follow this image (from [Cubeskills](https://www.cubeskills.com/uploads/pdf/tutorials/the-beginners-method-for-solving-the-rubiks-cube.pdf))
-
-![image](https://i.imgur.com/IIYopnA.png)
-
-It is highly recommended learning using the other method though — it makes the step after CMLL easier to grasp due to having very similar concepts.
-
 ## Permuting the Corners
 
 After the corners are oriented, we can finally deal with permuting them. What this step entails is memorizing another (slightly longer) algorithm — however, there are fewer cases and by extension, mental gymnastics to deal with. 
@@ -157,3 +157,7 @@ What it does is swaps the two corners on the right with each other, while preser
 In general, you can just find the `headlights`, then do `U` moves until the headlights are on the left, and then do the algorithm for permuting the corners.
 
 **If you do not see any headlights**, simply just do the algorithm, and you will then see headlights appear. If you want, you can trace why that works by looking at swapping any 2 pieces, but this isn't particularly important. 
+
+![](https://i.imgur.com/BgTHffg.png)
+
+Here's a visual representation if you need one.

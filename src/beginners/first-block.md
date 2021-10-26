@@ -50,7 +50,7 @@ The first step is to solve the white-blue edge piece relative to its center. Onc
 
 Note that the blue facelet on the blue-white edge should match with the blue center — not the other way around.
 
-Below, you will see a few examples of
+Below, you will see a few examples of how to insert the blue-white edge in place.
 
 #### Example: 1 move away
 
@@ -61,6 +61,28 @@ Below, you will see a few examples of
     .fc('tttwtttttttttgtttttttttttttttttttttttbttbttttttttttttt')
     .case('D2')
     ('#DL');
+</script>
+
+#### Example: L2 away
+
+<div id="DL-L2">
+<script type="text/javascript">
+  TTk.AlgorithmPuzzle(3)
+    .size({width:300, height:300})
+    .fc('tttwtttttttttgtttttttttttttttttttttttbttbttttttttttttt')
+    .case('L2')
+    ('#DL-L2');
+</script>
+
+#### Example: Weird position
+
+<div id="DL-weird">
+<script type="text/javascript">
+  TTk.AlgorithmPuzzle(3)
+    .size({width:300, height:300})
+    .fc('tttwtttttttttgtttttttttttttttttttttttbttbttttttttttttt')
+    .case(`B' D`)
+    ('#DL-weird');
 </script>
 
 #### Example: Edge flipped in place
@@ -74,6 +96,24 @@ Below, you will see a few examples of
     ('#DLflip');
 </script>
 
-## Other Resources to look at for further improvements:
+`or`
 
-- [book.rouxers.com's FB page](https://book.rouxers.com/fb.html)
+<div id="DLflip2">
+<script type="text/javascript">
+  TTk.AlgorithmPuzzle(3)
+    .size({width:300, height:300})
+    .fc('tttwtttttttttgtttttttttttttttttttttttbttbttttttttttttt')
+    .case(`L2 U' r' D'`)
+    ('#DLflip2');
+</script>
+
+(There are many possibilities — just experiment and see what works.)
+
+### Building the First Block Square (2x1x1)
+
+Once you're done with that, you're ready to move onto solving a `2x1x1` using either the Blue-Red-White or Blue-Orange-White pairs.
+
+To do that, we first need to know what a `pair` is.
+
+#### What is a pair?
+

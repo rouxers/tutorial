@@ -14,10 +14,6 @@ In this step, the goal is to solve the last six edges, which will actually end u
 
 ## Edge Orientation (EO)
 
-> If you want to use a flowchart instead (more memorization and less intuition but faster to get the hang of), use [this link here](https://rouxl.es/images/LSEEO.png). You don't need to know the difference between 'lefty' and 'righty' just yet — just pick one side and stick to it.
-> 
-> This visual is also shown after the EO section is finished.
-
 The first 'step' of LSE is to orient all the edges — making the white and yellow edges face either upwards or downwards. The colours on the other side of the edge does not matter for this step.
 
 <div id="eo">
@@ -37,16 +33,19 @@ Type | Description
 Oriented Edge/Good Edge | Edge where the white/yellow sticker is facing either upwards or downwards.
 Misoriented Edge/Bad Edge | Edge where the white/yellow sticker is **not** facing either upwards or downwards.
 
----
+In this step, we only need to use `M` and `U` moves - no other moves are needed.
 
-The general way to get to all edges oriented is to set up to an `arrow` case, where there are three misoriented edges on the top layer, and one misoriented edge on the bottom layer.
+There are still a few things we need to learn to make solving the rest of the cube easier:
 
-If you look at the top layer's misoriented edges, you can see a sort of `V` shape, which sort of looks like an arrow. If you first point the tip of the arrow on top of the misoriented edge in the bottom layer (see the examples below), then move the misoriented edge on the bottom layer to the tip (essentially moving it to the `U` layer using an `M`/`M'` move), then do a `U` or a `U'` (doesn't make a difference), and then do `M'` or `M`, you will then be able to solve the arrow case. This can be summarized in the steps below:
+### Solving the 'arrow' case
 
-1. Move the tip of the arrow above the bottom misoriented edge.
-2. Move the bottom misoriented edge to the `U` layer using an `M`/`M'` move.
-3. Do a `U` or `U'`.
-4. Do an `M` or `M'`.
+If you have 3 misoriented edges on the `U` layer and 1 misoriented edge on the `D` layer, you have an `arrow`. Looking at the misoriented edges on the `U` layer, you can sort of see a `V` shape which looks like an arrow. To get from this case to all edges oriented, you need to do the following steps:
+
+1. Bring the tip of the `V` on the `U` layer above the misoriented edge on the `D` layer. We will call the edge representing the tip of the arrow and the misoriented edge on the `D` layer the 'edges in question'
+2. Bring both of the edges in question to the `U` layer by either doing `M` or `M'`
+3. Do either `U` or `U'` (does not make a difference)
+4. Do an `M` move **in the opposite direction** of what you did in step 2.
+
 
 <div id="frontarrow">
 <script type="text/javascript">
@@ -68,7 +67,20 @@ If you look at the top layer's misoriented edges, you can see a sort of `V` shap
 </script>
 </div>
 
-Notice how in sum, doing the arrow case orients `4` misoriented edges? What that also can do is misorient `4` oriented edges, which can lead from other `EO` cases to the arrow itself. However, there are multiple configurations of `4` misoriented edges on the cube, which is what the next 'algorithm' can help remedy:
+This turns a case from having `4` misoriented edges to having none of the edges misoriented.
+
+Another extremely important concept in this step is an algorithm that *swaps* one of the edges in the `U` layer with one of the edges in the `D` layer while preserving our edge orientation. We'll call this the swapping algorithm.
+
+> This can either be done by swapping the front two edges or the back two edges
+
+To do this, we do the following steps:
+
+1. Bring the edge in the `U` layer that we want to swap above the edge in the `D` layer that we want swapped.
+2. Do either `M` or `M'` to bring them both to the `U` layer
+3. Do a `U2`
+4. Do an `M` move **in the opposite direction** of what you did in step 2.
+
+Notice how the steps are extremely similar to the `arrow` case from earlier? If you try to remember these two cases as one larger case, you'll have an easier time memorizing these cases.
 
 <div id="frontmu2m">
 <script type="text/javascript">
@@ -80,7 +92,49 @@ Notice how in sum, doing the arrow case orients `4` misoriented edges? What that
 </script>
 </div>
 
-If you look at the front two edges (yellow-red and yellow-white edges), you can see that by doing `M' U2 M`, they swap positions. This applies for misoriented edges too!
+<div id="backmu2m">
+<script type="text/javascript">
+  TTk.AlgorithmPuzzle(3)
+    .size({width:300, height:300})
+    .fc('wwwwwwwwwgggggggggrrrrrrrrryyyyyyyyybbbbbbbbbooooooooo')
+    .case(`M U2 M'`)
+    ('#backmu2m');
+</script>
+</div>
+
+After you know both these cases, you can finally move onto solving edge orientation!
+
+---
+
+### Flowchart Approach
+
+This approach requires more memorization than the intuitive approach below, but is still not a lot of pure memorization --- it's possible to brute force solve this step if you're stuck unlike the CMLL step from earlier.
+
+In the visual below, the red coloured edges represent **misoriented** edges. In some of the visuals, you may not be able to see all the misoriented edges, but one feature of the cube is that there can only be an even number of misoriented and oriented edges in sum. 
+
+All these cases lead to the `arrow`, which you can then solve intuitively from there.
+
+![](https://i.imgur.com/97lzRoZ.png)
+
+Remember that `M` moves follow the direction of `L` moves rather than `R` moves - this is a bit weird but because it's conventional, that's the way its done now.
+
+### Intuitive Approach
+
+The general way to get to all edges oriented is to set up to an `arrow` case, where there are three misoriented edges on the top layer, and one misoriented edge on the bottom layer. With this method, we will need just the arrow and the swapping algorithms and a bit of counting.
+
+We want to end up with `4` misoriented edges in total, which means we want to do the arrow alg in a position where we will eventually end up with 4 misoriented edges.
+
+<div id="frontmu2m1">
+<script type="text/javascript">
+  TTk.AlgorithmPuzzle(3)
+    .size({width:300, height:300})
+    .fc('wwwwwwwwwgggggggggrrrrrrrrryyyyyyyyybbbbbbbbbooooooooo')
+    .case(`M' U2 M`)
+    ('#frontmu2m1');
+</script>
+</div>
+
+If you look at the front two edges (yellow-red and yellow-white edges), you can see that by doing `M' U2 M`, they swap positions.
 
 <div id="frontmu2mmisoriented">
 <script type="text/javascript">
@@ -97,22 +151,15 @@ Notice how after doing `M' U2 M` on the cube, the visual goes from having 3 miso
 
 You can also do the swapping 'algorithm' from the back similarly to the arrow case.
 
-<div id="backmu2m">
+<div id="backmu2m1">
 <script type="text/javascript">
   TTk.AlgorithmPuzzle(3)
     .size({width:300, height:300})
     .fc('wwwwwwwwwgggggggggrrrrrrrrryyyyyyyyybbbbbbbbbooooooooo')
     .case(`M U2 M'`)
-    ('#backmu2m');
+    ('#backmu2m1');
 </script>
 </div>
-
-In general, you can simplify the swapping algorithm to steps very similar to arrow:
-
-1. Move the edge you want to swap above the bottom edge to swap.
-2. Move the bottom edge to the `U` layer using an `M`/`M'` move.
-3. Do a `U2`.
-4. Undo the first `M` move you did by doing the opposite `M` move.
 
 ---
 
@@ -294,14 +341,7 @@ In this case, `U'` will move the corners to the correct position:
 
 ---
 
-Small shortcut: you can actually do an `M2` to insert the first edge onto the `D` layer as long as your other edge isn't there. However, if you can't grasp this, stick with just doing the swapping moveset for now.
-
----
-
-## EO Flowchart
-
-In case you couldn't figure out how to solve a particular EO case, here is a simple flowchart (where lefty or righty M are for Rouxers who do M moves with their left or right hand respectively). Red-colored pieces are misoriented edges.
-![EO Flowchart](./EO_flowchart.png "EO Flowchart")
+Small shortcut: you can actually do an `M2` to insert the first edge onto the `D` layer as long as your other edge isn't there. However, if you can't grasp this, stick with just doing the swapping algorithm for now.
 
 ## Finishing the rest of the cube
 
@@ -309,4 +349,71 @@ You're nearly there!
 
 Due to the properties of the Rubik's cube, if you solve the bottom two edges (including the centers), the rest of the cube will automatically solve itself. Sound familiar?
 
-All you need to do is make sure the white center is on bottom (if it's not, you just need to do an `M2`), then from there, do the swapping moveset as many times as necessary until you solve the cube. This should be pretty intuitive, so there shouldn't really be a need for an example. You got this!
+All you need to do is make sure the white center is on bottom (if it's not, you just need to do an `M2` to put white on bottom), then from there, do the swapping algorithm to put the **white** edges in their correct places - in other words, solve them into their position. Afterwards, the cube solves itself. Let's take a look at some examples:
+
+<div id="end1">
+<script type="text/javascript">
+  TTk.AlgorithmPuzzle(3)
+    .size({width:300, height:300})
+    .fc('wwwwwwwwwgggggggggrrrrrrrrryyyyyyyyybbbbbbbbbooooooooo')
+    .case(`M' U2 M`)
+    .alg(`M' U2 M`)
+    ('#end1');
+</script>
+</div>
+
+Here we just need to solve one of the white edges because the other one is already solved in place.
+
+<div id="end2">
+<script type="text/javascript">
+  TTk.AlgorithmPuzzle(3)
+    .size({width:300, height:300})
+    .fc('wwwwwwwwwgggggggggrrrrrrrrryyyyyyyyybbbbbbbbbooooooooo')
+    .case(`M' U2 M'`)
+    .alg(`M2 M U2 M'`)
+    ('#end2');
+</script>
+</div>
+
+Here `M2` first puts the white center on the bottom, then we can put the edges in their correct position.
+
+<div id="end3">
+<script type="text/javascript">
+  TTk.AlgorithmPuzzle(3)
+    .size({width:300, height:300})
+    .fc('wwwwwwwwwgggggggggrrrrrrrrryyyyyyyyybbbbbbbbbooooooooo')
+    .case(`M2 U2 M' U2 M`)
+    .alg(`M2 U2 M' U2 M`)
+    ('#end3');
+</script>
+</div>
+
+In this case, `M2` puts the white center on the bottom, and after that, on the `U` layer we only see one white edge (in this case the white-red edge), so when we want to solve it in place, we first need to move the edge to its position (which is in the axis where the white and red centers are), then swap the edges in question (which in this case is the front 2)
+
+<div id="end4">
+<script type="text/javascript">
+  TTk.AlgorithmPuzzle(3)
+    .size({width:300, height:300})
+    .fc('wwwwwwwwwgggggggggrrrrrrrrryyyyyyyyybbbbbbbbbooooooooo')
+    .case(`M' U2 M2 U2 M'`)
+    .alg(`M' U2 M M U2 M'`)
+    ('#end4');
+</script>
+</div>
+
+You can see here that the two white edges on the `U` layer are already directly above their solved position, so we just need to swap the front two edges, then swap the back two edges.
+
+<div id="end5">
+<script type="text/javascript">
+  TTk.AlgorithmPuzzle(3)
+    .size({width:300, height:300})
+    .fc('wwwwwwwwwgggggggggrrrrrrrrryyyyyyyyybbbbbbbbbooooooooo')
+    .case(`M2 U2 M2 U2`)
+    .alg(`M' U2 M U2 M U2 M' U2 M' U2 M U2`)
+    ('#end5');
+</script>
+</div>
+
+The first `M' U2 M` brings one of the white edges to the `U` layer because we need to have one there to be able to execute swaps, then afterwards, we see that the edge that gets kicked out (the white-orange edge) needs to go to the back, so we can do `U2` to align the edge, then do a back swap (`M U2 M'`), then afterwards the white-red edge gets kicked out to the `U` layer, which from there, we can then align it with its position in the front with `U2`, then do a front swap (`M' U2 M`), then just do the last move to solve the rest of the cube.
+
+> This case can actually be solved by doing `M' U2 M` which directly solves both the white edges at the same time - but this isn't too important to learn for now.
