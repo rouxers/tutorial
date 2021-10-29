@@ -1,0 +1,510 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Last Six Edges - Roux Tutorial</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="../beginners/beginners.html"><strong aria-hidden="true">1.</strong> Beginners</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../beginners/notation.html"><strong aria-hidden="true">1.1.</strong> Notation</a></li><li class="chapter-item expanded "><a href="../beginners/first-block.html"><strong aria-hidden="true">1.2.</strong> First Block</a></li><li class="chapter-item expanded "><a href="../beginners/second-block.html"><strong aria-hidden="true">1.3.</strong> Second Block</a></li><li class="chapter-item expanded "><a href="../beginners/cmll.html"><strong aria-hidden="true">1.4.</strong> CMLL</a></li><li class="chapter-item expanded "><a href="../beginners/lse.html" class="active"><strong aria-hidden="true">1.5.</strong> Last Six Edges</a></li></ol></li><li class="chapter-item expanded "><a href="../intermediate/intermediate.html"><strong aria-hidden="true">2.</strong> Intermediate</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../intermediate/first-block.html"><strong aria-hidden="true">2.1.</strong> First Block</a></li><li class="chapter-item expanded "><a href="../intermediate/second-block.html"><strong aria-hidden="true">2.2.</strong> Second Block</a></li><li class="chapter-item expanded "><a href="../intermediate/cmll.html"><strong aria-hidden="true">2.3.</strong> CMLL</a></li><li class="chapter-item expanded "><a href="../intermediate/lse.html"><strong aria-hidden="true">2.4.</strong> LSE</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Roux Tutorial</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <script type="text/javascript" src="/twistysim.js"></script>
+<style type="text/css" rel="stylesheet">
+/* modifies the opacity of the cube wireframe */
+.ttk-shp-poly {
+    stroke-opacity: 0.3;
+}
+</style>
+<h1 id="lse"><a class="header" href="#lse">LSE</a></h1>
+<h2 id="objective"><a class="header" href="#objective">Objective</a></h2>
+<p>In this step, the goal is to solve the last six edges, which will actually end up solving the entire cube!</p>
+<h2 id="edge-orientation-eo"><a class="header" href="#edge-orientation-eo">Edge Orientation (EO)</a></h2>
+<p>The first 'step' of LSE is to orient all the edges — making the white and yellow edges face either upwards or downwards. The colours on the other side of the edge does not matter for this step.</p>
+<div id="eo">
+<script type="text/javascript">
+  TTk.AlgorithmPuzzle(3)
+    .size({width:300, height:300})
+    .fc('wwwwwwwwwggggggglgrlrrrrrlryyyyyyyyybbbbbbblbolooooolo')
+    .case(`M2 U2 M U2 M U' M2 U M2 U M' U2 M'`)
+    ('#eo');
+</script>
+</div>
+<p><strong>Make sure you have either the white center or the yellow center on the U layer!</strong> Correct edge orientation depends on this being the case — if it isn't, the remaining steps are going to not behave as normal as the edges aren't going to be oriented <em>relative to the centers</em>.</p>
+<table><thead><tr><th align="left">Type</th><th align="left">Description</th></tr></thead><tbody>
+<tr><td align="left">Oriented Edge/Good Edge</td><td align="left">Edge where the white/yellow sticker is facing either upwards or downwards.</td></tr>
+<tr><td align="left">Misoriented Edge/Bad Edge</td><td align="left">Edge where the white/yellow sticker is <strong>not</strong> facing either upwards or downwards.</td></tr>
+</tbody></table>
+<p>In this step, we only need to use <code>M</code> and <code>U</code> moves - no other moves are needed.</p>
+<p>There are still a few things we need to learn to make solving the rest of the cube easier:</p>
+<h3 id="solving-the-arrow-case"><a class="header" href="#solving-the-arrow-case">Solving the 'arrow' case</a></h3>
+<p>If you have 3 misoriented edges on the <code>U</code> layer and 1 misoriented edge on the <code>D</code> layer, you have an <code>arrow</code>. Looking at the misoriented edges on the <code>U</code> layer, you can sort of see a <code>V</code> shape which looks like an arrow. To get from this case to all edges oriented, you need to do the following steps:</p>
+<ol>
+<li>Bring the tip of the <code>V</code> on the <code>U</code> layer above the misoriented edge on the <code>D</code> layer. We will call the edge representing the tip of the arrow and the misoriented edge on the <code>D</code> layer the 'edges in question'</li>
+<li>Bring both of the edges in question to the <code>U</code> layer by either doing <code>M</code> or <code>M'</code></li>
+<li>Do either <code>U</code> or <code>U'</code> (does not make a difference)</li>
+<li>Do an <code>M</code> move <strong>in the opposite direction</strong> of what you did in step 2.</li>
+</ol>
+<div id="frontarrow">
+<script type="text/javascript">
+  TTk.AlgorithmPuzzle(3)
+    .size({width:300, height:300})
+    .fc('wwwwwwwwwggggggglgrlrrrrrlryyyyyyyyybbbbbbblbolooooolo')
+    .case(`U M' U M`)
+    ('#frontarrow');
+</script>
+</div>
+<div id="backarrow">
+<script type="text/javascript">
+  TTk.AlgorithmPuzzle(3)
+    .size({width:300, height:300})
+    .fc('wwwwwwwwwggggggglgrlrrrrrlryyyyyyyyybbbbbbblbolooooolo')
+    .case(`U' M U M'`)
+    ('#backarrow');
+</script>
+</div>
+<p>This turns a case from having <code>4</code> misoriented edges to having none of the edges misoriented.</p>
+<p>Another extremely important concept in this step is an algorithm that <em>swaps</em> one of the edges in the <code>U</code> layer with one of the edges in the <code>D</code> layer while preserving our edge orientation. We'll call this the swapping algorithm.</p>
+<blockquote>
+<p>This can either be done by swapping the front two edges or the back two edges</p>
+</blockquote>
+<p>To do this, we do the following steps:</p>
+<ol>
+<li>Bring the edge in the <code>U</code> layer that we want to swap above the edge in the <code>D</code> layer that we want swapped.</li>
+<li>Do either <code>M</code> or <code>M'</code> to bring them both to the <code>U</code> layer</li>
+<li>Do a <code>U2</code></li>
+<li>Do an <code>M</code> move <strong>in the opposite direction</strong> of what you did in step 2.</li>
+</ol>
+<p>Notice how the steps are extremely similar to the <code>arrow</code> case from earlier? If you try to remember these two cases as one larger case, you'll have an easier time memorizing these cases.</p>
+<div id="frontmu2m">
+<script type="text/javascript">
+  TTk.AlgorithmPuzzle(3)
+    .size({width:300, height:300})
+    .fc('wwwwwwwwwgggggggggrrrrrrrrryyyyyyyyybbbbbbbbbooooooooo')
+    .case(`M' U2 M`)
+    ('#frontmu2m');
+</script>
+</div>
+<div id="backmu2m">
+<script type="text/javascript">
+  TTk.AlgorithmPuzzle(3)
+    .size({width:300, height:300})
+    .fc('wwwwwwwwwgggggggggrrrrrrrrryyyyyyyyybbbbbbbbbooooooooo')
+    .case(`M U2 M'`)
+    ('#backmu2m');
+</script>
+</div>
+<p>After you know both these cases, you can finally move onto solving edge orientation!</p>
+<hr />
+<h3 id="flowchart-approach"><a class="header" href="#flowchart-approach">Flowchart Approach</a></h3>
+<p>This approach requires more memorization than the intuitive approach below, but is still not a lot of pure memorization --- it's possible to brute force solve this step if you're stuck unlike the CMLL step from earlier.</p>
+<p>In the visual below, the red coloured edges represent <strong>misoriented</strong> edges. In some of the visuals, you may not be able to see all the misoriented edges, but one feature of the cube is that there can only be an even number of misoriented and oriented edges in sum. </p>
+<p>All these cases lead to the <code>arrow</code>, which you can then solve intuitively from there.</p>
+<p><img src="https://i.imgur.com/97lzRoZ.png" alt="" /></p>
+<p>Remember that <code>M</code> moves follow the direction of <code>L</code> moves rather than <code>R</code> moves - this is a bit weird but because it's conventional, that's the way its done now.</p>
+<h3 id="intuitive-approach"><a class="header" href="#intuitive-approach">Intuitive Approach</a></h3>
+<p>The general way to get to all edges oriented is to set up to an <code>arrow</code> case, where there are three misoriented edges on the top layer, and one misoriented edge on the bottom layer. With this method, we will need just the arrow and the swapping algorithms and a bit of counting.</p>
+<p>We want to end up with <code>4</code> misoriented edges in total, which means we want to do the arrow alg in a position where we will eventually end up with 4 misoriented edges.</p>
+<div id="frontmu2m1">
+<script type="text/javascript">
+  TTk.AlgorithmPuzzle(3)
+    .size({width:300, height:300})
+    .fc('wwwwwwwwwgggggggggrrrrrrrrryyyyyyyyybbbbbbbbbooooooooo')
+    .case(`M' U2 M`)
+    ('#frontmu2m1');
+</script>
+</div>
+<p>If you look at the front two edges (yellow-red and yellow-white edges), you can see that by doing <code>M' U2 M</code>, they swap positions.</p>
+<div id="frontmu2mmisoriented">
+<script type="text/javascript">
+  TTk.AlgorithmPuzzle(3)
+    .size({width:300, height:300})
+    .fc('wwwwwwwwwgggggggggrrrrrrrrryyyyyyyyybbbbbbbbbooooooooo')
+    .case(`U' M U M'`)
+    .alg(`M' U2 M`)
+    ('#frontmu2mmisoriented');
+</script>
+</div>
+<p>Notice how after doing <code>M' U2 M</code> on the cube, the visual goes from having 3 misoriented edges on the top layer and 1 misoriented edge on the bottom layer to having 2 on top and 2 on bottom. In the example above, the red-white and orange-yellow edges swap position.</p>
+<p>You can also do the swapping 'algorithm' from the back similarly to the arrow case.</p>
+<div id="backmu2m1">
+<script type="text/javascript">
+  TTk.AlgorithmPuzzle(3)
+    .size({width:300, height:300})
+    .fc('wwwwwwwwwgggggggggrrrrrrrrryyyyyyyyybbbbbbbbbooooooooo')
+    .case(`M U2 M'`)
+    ('#backmu2m1');
+</script>
+</div>
+<hr />
+<h3 id="example-1"><a class="header" href="#example-1">Example 1:</a></h3>
+<p>Knowing this information, let's try our hand at some LSE cases:</p>
+<div id="case1-1">
+<script type="text/javascript">
+  TTk.AlgorithmPuzzle(3)
+    .size({width:300, height:300})
+    .fc('wwwwwwwwwgggggggggrrrrrrrrryyyyyyyyybbbbbbbbbooooooooo')
+    .case(`U M U M U M' U M`)
+    .alg(`U' U' U'`)
+    .showAlg(false)
+    ('#case1-1');
+</script>
+</div>
+<p>First, check to see how many misoriented edges there are — 2.</p>
+<blockquote>
+<p>Hint: the number of misoriented edges will ALWAYS be an even number; likewise for oriented edges.</p>
+</blockquote>
+<p>Then, remember that your goal is to do the arrow alg such that you can get to 4 misoriented edges in total. If you remember what edges the arrow cases flip, you can basically check to see what your end case will become.</p>
+<p>From the first angle in the visual, if you do an arrow in the front, you will end up flipping two oriented edges and two misoriented edges, leaving you with a total of two misoriented edges, which means that it isn't the correct angle. <strong>However</strong>, if you do an arrow from the back, you flip one misoriented edge and three oriented edges, which in total leads to four misoriented edges if you include the misoriented edge that does not get affected in the front.</p>
+<p>From the second angle, doing the arrow in the front leads to two misoriented edges, and doing it from the back leads to six misoriented edges, so we can ignore this angle.</p>
+<p>The third angle is just a mirror of the first angle, so the same thing applies (just see for yourself).</p>
+<p>In the fourth angle, if you do an arrow in the front, you end up flipping one misoriented edge and three oriented edges, leaving you with four misoriented edges in total. If you do an arrow in the back, you end also end up flipping one misoriented edge and three oriented edges, leaving you with four in total too.</p>
+<p>After executing the arrow alg from the correct angle (in this case, <code>M U' M'</code>), we get the case in the visual below:</p>
+<div id="case1-2">
+<script type="text/javascript">
+  TTk.AlgorithmPuzzle(3)
+    .size({width:300, height:300})
+    .fc('wwwwwwwwwgggggggggrrrrrrrrryyyyyyyyybbbbbbbbbooooooooo')
+    .case(`U M U M U M' U M`)
+    .alg(`M U' M'`)
+    ('#case1-2');
+</script>
+</div>
+<p>Notice how there are <strong>four</strong> bad edges in total, however we don't have the arrow case directly because we have two misoriented on the top, and two on the bottom, so we will have to do some swaps in order to set up to an arrow. In this case, we want to swap one of the oriented edges on the <code>U</code> layer with one of the misoriented edges on the <code>D</code> layer.</p>
+<p>In the example below, the back two edges will be swapped, leading to an arrow case, which from there can lead to finishing EO.</p>
+<div id="case1-3">
+<script type="text/javascript">
+  TTk.AlgorithmPuzzle(3)
+    .size({width:300, height:300})
+    .fc('wwwwwwwwwgggggggggrrrrrrrrryyyyyyyyybbbbbbbbbooooooooo')
+    .case(`M U M' U M U M U M' U M`)
+    .alg(`M U2 M' U2 M' U M`)
+    ('#case1-3');
+</script>
+</div>
+<p>Doing <code>M U2 M'</code> swaps the back two, making an arrow case. From there, <code>U2</code> sets up to the correct angle for the arrow case, from which <code>M' U M</code> solves the arrow case fully.</p>
+<h3 id="example-2"><a class="header" href="#example-2">Example 2:</a></h3>
+<div id="case2-1">
+<script type="text/javascript">
+  TTk.AlgorithmPuzzle(3)
+    .size({width:300, height:300})
+    .fc('wwwwwwwwwgggggggggrrrrrrrrryyyyyyyyybbbbbbbbbooooooooo')
+    .case(`R U' r' U' M' U r U r'`)
+    .alg(`U' U' U'`)
+    .showAlg(false)
+    ('#case2-1');
+</script>
+</div>
+<p>In this case, we start off with all the edges misoriented. You can do the arrow from any angle here, because no matter what <code>U</code> move you do, you still have the same six misoriented edges.</p>
+<div id="case2-2">
+<script type="text/javascript">
+  TTk.AlgorithmPuzzle(3)
+    .size({width:300, height:300})
+    .fc('wwwwwwwwwgggggggggrrrrrrrrryyyyyyyyybbbbbbbbbooooooooo')
+    .case(`R U' r' U' M' U r U r'`)
+    .alg(`M' U M`)
+    ('#case2-2');
+</script>
+</div>
+<p>From here, we have one misoriented on top and one misoriented on bottom, which is the same as the example shown earlier. From here you can just follow the same steps as Example 1.</p>
+<div id="case2-3">
+<script type="text/javascript">
+  TTk.AlgorithmPuzzle(3)
+    .size({width:300, height:300})
+    .fc('wwwwwwwwwgggggggggrrrrrrrrryyyyyyyyybbbbbbbbbooooooooo')
+    .case(`M' U' M R U' r' U' M' U r U r'`)
+    .alg(`U2 M U M'`)
+    ('#case2-3');
+</script>
+</div>
+<p>Setup to arrow, then</p>
+<div id="case2-4">
+<script type="text/javascript">
+  TTk.AlgorithmPuzzle(3)
+    .size({width:300, height:300})
+    .fc('wwwwwwwwwgggggggggrrrrrrrrryyyyyyyyybbbbbbbbbooooooooo')
+    .case(`M U' M' U2 M' U' M R U' r' U' M' U r U r'`)
+    .alg(`U M U M'`)
+    ('#case2-4');
+</script>
+</div>
+<p>solve EO!</p>
+<hr />
+<h2 id="solving-the-left-and-right-edges"><a class="header" href="#solving-the-left-and-right-edges">Solving the Left and Right edges</a></h2>
+<p>In this step, the aim is to solve the edges that are part of the left and right sides of the cube. Due to the fact that we always start with the blue-white first block, this means that the edges in question are the green-yellow and blue-yellow edges. </p>
+<p>The simplest, and typically most efficient, approach is to put both the green-yellow and blue-yellow edges on the bottom layer, then doing an <code>M2</code> from the correct angle to solve the edges.</p>
+<div id="ulur1">
+<script type="text/javascript">
+  TTk.AlgorithmPuzzle(3)
+    .size({width:300, height:300})
+    .fc('wwwwwwwwwgggggggggrrrrrrrrryyyyyyyyybbbbbbbbbooooooooo')
+    .case(`M' U2 M U M U2 M' M2 U2 M U2 M U' M2 U2 M2 U M' U2 M' U M2 U M' U2 M' U2 M U2 M'`)
+    .alg(`M' U2 M`)
+    ('#ulur1');
+</script>
+</div>
+<p>For example, you can do <code>M' U2 M</code> (front swap) here to bring the green-yellow edge to the <code>D</code> layer in the front.</p>
+<div id="ulur2">
+<script type="text/javascript">
+  TTk.AlgorithmPuzzle(3)
+    .size({width:300, height:300})
+    .fc('wwwwwwwwwgggggggggrrrrrrrrryyyyyyyyybbbbbbbbbooooooooo')
+    .case(`M' U2 M U M U2 M' M2 U2 M U2 M U' M2 U2 M2 U M' U2 M' U M2 U M' U2 M' U2 M U2 M'`)
+    .alg(`M' U2 M`)
+    ('#ulur2');
+</script>
+</div>
+<p>Afterwards, <code>U M U2 M'</code> (setup to back swap) will put the blue-yellow edge to the <code>D</code> layer in the back such that both of the edges in question are located in the <code>D</code> layer:</p>
+<div id="ulur3">
+<script type="text/javascript">
+  TTk.AlgorithmPuzzle(3)
+    .size({width:300, height:300})
+    .fc('wwwwwwwwwgggggggggrrrrrrrrryyyyyyyyybbbbbbbbbooooooooo')
+    .case(`U M U2 M' M2 U2 M U2 M U' M2 U2 M2 U M' U2 M' U M2 U M' U2 M' U2 M U2 M'`)
+    .alg(`U M U2 M'`)
+    ('#ulur3');
+</script>
+</div>
+<p>After you get both of the edges onto the bottom layer, all that's left is to move the corners with <code>U</code> moves until doing an <code>M2</code> will solve the edges relative to their corners.</p>
+<p>In this case, <code>U'</code> will move the corners to the correct position:</p>
+<div id="ulur4">
+<script type="text/javascript">
+  TTk.AlgorithmPuzzle(3)
+    .size({width:300, height:300})
+    .fc('wwwwwwwwwgggggggggrrrrrrrrryyyyyyyyybbbbbbbbbooooooooo')
+    .case(`M U2 M' U' U M U2 M' M2 U2 M U2 M U' M2 U2 M2 U M' U2 M' U M2 U M' U2 M' U2 M U2 M'`)
+    .alg(`U' M2'`)
+    ('#ulur4');
+</script>
+</div>
+<hr />
+<p>Small shortcut: you can actually do an <code>M2</code> to insert the first edge onto the <code>D</code> layer as long as your other edge isn't there. However, if you can't grasp this, stick with just doing the swapping algorithm for now.</p>
+<h2 id="finishing-the-rest-of-the-cube"><a class="header" href="#finishing-the-rest-of-the-cube">Finishing the rest of the cube</a></h2>
+<p>You're nearly there!</p>
+<p>Due to the properties of the Rubik's cube, if you solve the bottom two edges (including the centers), the rest of the cube will automatically solve itself. Sound familiar?</p>
+<p>All you need to do is make sure the white center is on bottom (if it's not, you just need to do an <code>M2</code> to put white on bottom), then from there, do the swapping algorithm to put the <strong>white</strong> edges in their correct places - in other words, solve them into their position. Afterwards, the cube solves itself. Let's take a look at some examples:</p>
+<div id="end1">
+<script type="text/javascript">
+  TTk.AlgorithmPuzzle(3)
+    .size({width:300, height:300})
+    .fc('wwwwwwwwwgggggggggrrrrrrrrryyyyyyyyybbbbbbbbbooooooooo')
+    .case(`M' U2 M`)
+    .alg(`M' U2 M`)
+    ('#end1');
+</script>
+</div>
+<p>Here we just need to solve one of the white edges because the other one is already solved in place.</p>
+<div id="end2">
+<script type="text/javascript">
+  TTk.AlgorithmPuzzle(3)
+    .size({width:300, height:300})
+    .fc('wwwwwwwwwgggggggggrrrrrrrrryyyyyyyyybbbbbbbbbooooooooo')
+    .case(`M' U2 M'`)
+    .alg(`M2 M U2 M'`)
+    ('#end2');
+</script>
+</div>
+<p>Here <code>M2</code> first puts the white center on the bottom, then we can put the edges in their correct position.</p>
+<div id="end3">
+<script type="text/javascript">
+  TTk.AlgorithmPuzzle(3)
+    .size({width:300, height:300})
+    .fc('wwwwwwwwwgggggggggrrrrrrrrryyyyyyyyybbbbbbbbbooooooooo')
+    .case(`M2 U2 M' U2 M`)
+    .alg(`M2 U2 M' U2 M`)
+    ('#end3');
+</script>
+</div>
+<p>In this case, <code>M2</code> puts the white center on the bottom, and after that, on the <code>U</code> layer we only see one white edge (in this case the white-red edge), so when we want to solve it in place, we first need to move the edge to its position (which is in the axis where the white and red centers are), then swap the edges in question (which in this case is the front 2)</p>
+<div id="end4">
+<script type="text/javascript">
+  TTk.AlgorithmPuzzle(3)
+    .size({width:300, height:300})
+    .fc('wwwwwwwwwgggggggggrrrrrrrrryyyyyyyyybbbbbbbbbooooooooo')
+    .case(`M' U2 M2 U2 M'`)
+    .alg(`M' U2 M M U2 M'`)
+    ('#end4');
+</script>
+</div>
+<p>You can see here that the two white edges on the <code>U</code> layer are already directly above their solved position, so we just need to swap the front two edges, then swap the back two edges.</p>
+<div id="end5">
+<script type="text/javascript">
+  TTk.AlgorithmPuzzle(3)
+    .size({width:300, height:300})
+    .fc('wwwwwwwwwgggggggggrrrrrrrrryyyyyyyyybbbbbbbbbooooooooo')
+    .case(`M2 U2 M2 U2`)
+    .alg(`M' U2 M U2 M U2 M' U2 M' U2 M U2`)
+    ('#end5');
+</script>
+</div>
+<p>The first <code>M' U2 M</code> brings one of the white edges to the <code>U</code> layer because we need to have one there to be able to execute swaps, then afterwards, we see that the edge that gets kicked out (the white-orange edge) needs to go to the back, so we can do <code>U2</code> to align the edge, then do a back swap (<code>M U2 M'</code>), then afterwards the white-red edge gets kicked out to the <code>U</code> layer, which from there, we can then align it with its position in the front with <code>U2</code>, then do a front swap (<code>M' U2 M</code>), then just do the last move to solve the rest of the cube.</p>
+<blockquote>
+<p>This case can actually be solved by doing <code>M2 U2 M2 U2</code> which directly solves both the white edges at the same time - but this isn't too important to learn for now.</p>
+</blockquote>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../beginners/cmll.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../intermediate/intermediate.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../beginners/cmll.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../intermediate/intermediate.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>

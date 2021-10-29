@@ -1,0 +1,326 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Second Block - Roux Tutorial</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="../beginners/beginners.html"><strong aria-hidden="true">1.</strong> Beginners</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../beginners/notation.html"><strong aria-hidden="true">1.1.</strong> Notation</a></li><li class="chapter-item expanded "><a href="../beginners/first-block.html"><strong aria-hidden="true">1.2.</strong> First Block</a></li><li class="chapter-item expanded "><a href="../beginners/second-block.html"><strong aria-hidden="true">1.3.</strong> Second Block</a></li><li class="chapter-item expanded "><a href="../beginners/cmll.html"><strong aria-hidden="true">1.4.</strong> CMLL</a></li><li class="chapter-item expanded "><a href="../beginners/lse.html"><strong aria-hidden="true">1.5.</strong> Last Six Edges</a></li></ol></li><li class="chapter-item expanded "><a href="../intermediate/intermediate.html"><strong aria-hidden="true">2.</strong> Intermediate</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../intermediate/first-block.html"><strong aria-hidden="true">2.1.</strong> First Block</a></li><li class="chapter-item expanded "><a href="../intermediate/second-block.html" class="active"><strong aria-hidden="true">2.2.</strong> Second Block</a></li><li class="chapter-item expanded "><a href="../intermediate/cmll.html"><strong aria-hidden="true">2.3.</strong> CMLL</a></li><li class="chapter-item expanded "><a href="../intermediate/lse.html"><strong aria-hidden="true">2.4.</strong> LSE</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Roux Tutorial</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <script type="text/javascript" src="/twistysim.js"></script>
+<style type="text/css" rel="stylesheet">
+/* modifies the opacity of the cube wireframe */
+.ttk-shp-poly {
+    stroke-opacity: 0.3;
+}
+</style>
+<h1 id="second-block"><a class="header" href="#second-block">Second Block</a></h1>
+<h2 id="objective"><a class="header" href="#objective">Objective</a></h2>
+<p>The goal of Second Block (SB) is to solve a <code>2x3x1</code> block on the right side of the cube (opposite to the first block you built).</p>
+<div id="inf1">
+<script type="text/javascript">
+  TTk.AlgorithmPuzzle(3)
+    .size({width:300, height:300})
+    .fc('wtwwtwwtwggggggtttrtrrtrttttttttttttbbbbbbtttotootottt')
+    ('#inf1');
+</script>
+</div>
+<h2 id="basic-pair-insertions"><a class="header" href="#basic-pair-insertions">Basic Pair Insertions</a></h2>
+<p>While you can treat this step similarly to CFOP except using the M slice to orient edges as opposed to rotating, <strong>this approach is fairly inefficient.</strong></p>
+<p>When building SB, stick with a <code>&lt;R, r, U, M&gt;</code> moveset for now - there are places where doing F moves are useful, but as a beginner, avoiding using them completely for now will set somewhat decent fundamentals. Make sure to take SB slowly at the beginning and try to think of efficient solutions rather than blindly applying your knowledge from other methods.</p>
+<p>Below are some inserts that are worth learning and setting up to when you see fit:</p>
+<h3 id="wide-insert"><a class="header" href="#wide-insert">Wide Insert</a></h3>
+<p>This insert is one of the most fundamental parts of Roux SB. </p>
+<div id="inf2">
+<script type="text/javascript">
+  TTk.AlgorithmPuzzle(3)
+    .size({width:300, height:300})
+    .fc('wtwwtwwtwggggggtttrtrrtrttttttttttttbbbbbbtttotootottt')
+    .case(`r U r'`)
+    ('#inf2');
+</script>
+</div>
+<p>There are quite a few cases where using the M slice to create this pair and insert this pair is going to be a good solution.</p>
+<h3 id="wide-insert-2"><a class="header" href="#wide-insert-2">Wide Insert (2)</a></h3>
+<div id="inf3">
+<script type="text/javascript">
+  TTk.AlgorithmPuzzle(3)
+    .size({width:300, height:300})
+    .fc('wtwwtwwtwggggggtttrtrrtrttttttttttttbbbbbbtttotootottt')
+    .case(`r U' r'`)
+    ('#inf3');
+</script>
+</div>
+<p>This case is less commonly seen compared to the other wide insert shown above, but it is still good to know about this solution. Some people may also see this as <code>M'</code> to pair the corner and the edge, and then <code>R U' R'</code> to insert, but the <code>M'</code> and the <code>R</code> at the beginning cancels, so you end up with a beginning <code>r</code> move instead.</p>
+<blockquote>
+<p>The two cases above can, and should, be mirrored to the back with <code>r' U' r</code> and <code>r' U r</code> respectively.</p>
+</blockquote>
+<h3 id="corner-solved"><a class="header" href="#corner-solved">Corner Solved</a></h3>
+<div id="corner1">
+<script type="text/javascript">
+  TTk.AlgorithmPuzzle(3)
+    .size({width:300, height:300})
+    .fc('wtwwtwwtwggggggtttrtrrtrttttttttttttbbbbbbtttotootottt')
+    .case(`R U' M' U r'`)
+    ('#corner1');
+</script>
+</div>
+<p>When you have a misoriented edge and a solved corner, you can use the <code>M</code> slice to pair up the corner and the edge as shown above.</p>
+<h3 id="corner-solved-2"><a class="header" href="#corner-solved-2">Corner Solved (2)</a></h3>
+<div id="corner2">
+<script type="text/javascript">
+  TTk.AlgorithmPuzzle(3)
+    .size({width:300, height:300})
+    .fc('wtwwtwwtwggggggtttrtrrtrttttttttttttbbbbbbtttotootottt')
+    .case(`r U' M U R'`)
+    ('#corner2');
+</script>
+</div>
+<p>When you have an oriented edge and a solved corner, you can use the <code>M</code> slice to pair up the corner and the edge as shown above.</p>
+<h3 id="regular-inserts"><a class="header" href="#regular-inserts">Regular Inserts</a></h3>
+<p>The normal CFOP style with moveset <code>&lt;RU&gt;</code> to insert pairs should also be used in Roux SB. If you ever need to use F moves (for example with <code>F' U' F</code>), you should instead use the M slice to orient the edge in question, then insert the pair using some form of <code>&lt;RrU&gt;</code>.</p>
+<h2 id="approach-to-building-a-2x2x1-square"><a class="header" href="#approach-to-building-a-2x2x1-square">Approach to Building a 2x2x1 Square</a></h2>
+<p>A <code>2x2x1</code> square is usually the first step of solving the second block, and can be built by either building the pair first, then doing some blockbuilding to solve the pair with the edge, or first solving the <code>DR</code> edge with some influencing, then solving any pair that comes afterwards.</p>
+<p>Most top solvers solve the <code>DR</code> edge first mainly because it is easier to see FB + the <code>DR</code> edge in inspection. As a result, it is recommended that you use a <code>DR</code> first approach unless a pair presents itself for you after FB is built. </p>
+<h2 id="applications"><a class="header" href="#applications">Applications</a></h2>
+<h3 id="example-1"><a class="header" href="#example-1">Example 1</a></h3>
+<div id="inf4">
+<script type="text/javascript">
+  TTk.AlgorithmPuzzle(3)
+    .size({width:300, height:300})
+    .fc('wtwwtwwtwggggggtttrtrrtrttttttttttttbbbbbbtttotootottt')
+    .case(`M U r U' r'`)
+    ('#inf4');
+</script>
+</div>
+<p>While this pair is already solvable without rotating using CFOP, a <em>significantly</em> more efficient way of solving this pair would be to do an <code>M</code> move, then use one of the Roux-style wide inserts to solve the pair.</p>
+<h3 id="example-2"><a class="header" href="#example-2">Example 2</a></h3>
+<div id="inf5">
+<script type="text/javascript">
+  TTk.AlgorithmPuzzle(3)
+    .size({width:300, height:300})
+    .fc('wtwwtwwtwggggggtttrtrrtrttttttttttttbbbbbbtttotootottt')
+    .case(`M R U' R'`)
+    ('#inf5');
+</script>
+</div>
+<p>The solution to this (without rotating or using <code>F</code>/<code>B</code> moves) is fairly obvious, but it's worth mentioning just in case.</p>
+<h3 id="example-3"><a class="header" href="#example-3">Example 3</a></h3>
+<div id="inf6">
+<script type="text/javascript">
+  TTk.AlgorithmPuzzle(3)
+    .size({width:300, height:300})
+    .fc('wtwwtwwtwggggggtttrtrrtrttttttttttttbbbbbbtttotootottt')
+    .case(`R U R' U r U' r'`)
+    ('#inf6');
+</script>
+</div>
+<p>This case may be somewhat difficult to think of on the spot, but this case essentially is setting the corner up to an <code>r U' r'</code> insert.</p>
+<h3 id="example-4"><a class="header" href="#example-4">Example 4</a></h3>
+<div id="ben">
+<script type="text/javascript">
+  TTk.AlgorithmPuzzle(3)
+    .size({width:300, height:300})
+    .fc('wtwwtwwtwggggggtttrtrrtrttttttttttttbbbbbbtttotootottt')
+    .case(`r U' r' U2 r U r'`)
+    ('#ben');
+</script>
+</div>
+<p>This insert pairs up the corner and the edge with <code>r U' r'</code>, then the remaining portion is simply AUF into wide move insert.</p>
+<h2 id="other-resources-to-look-at-for-further-improvements"><a class="header" href="#other-resources-to-look-at-for-further-improvements">Other Resources to look at for further improvements:</a></h2>
+<p>Second Block is one of the hardest steps to get good at. It is highly recommended that you use the resources below to learn new approaches of solving SB rather than trying to learn everything by yourself.</p>
+<ul>
+<li>
+<p>SBSquare (SS)</p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=eGHJVvvbdXY">F2B Tech: Build your SS Pair &quot;Corner First&quot;</a></li>
+<li><a href="https://onionhoney.github.io/roux-trainers/#ss">Zhouheng's SS Trainer</a></li>
+</ul>
+</li>
+<li>
+<p>SBPair (SP)</p>
+<ul>
+<li><a href="https://docs.google.com/document/d/1bX50jAOM_veHsVJeLYGvSrH4uW9xrubep1zOSLdE4Vk/edit">Second Block Algs Document</a></li>
+</ul>
+</li>
+<li>
+<p>General Resources:</p>
+<ul>
+<li><a href="https://raw.githubusercontent.com/Rouxles/roux-tutorial/master/fbdr/Zhouheng%27s%20FBDR%20Guide.pdf">Zhouheng's FBDR Guide</a></li>
+<li><a href="https://www.youtube.com/playlist?list=PLXiPs1z2Pwm5QPrtqB5J5rJ2DH6tbBU8T">Kavin Tangtartharakul's Example Solves</a></li>
+<li><a href="https://cubegrass.appspot.com/block_trainer/">Cubegrass SB, SS, SP Trainers</a></li>
+</ul>
+</li>
+<li>
+<p><a href="https://book.rouxers.com/fb.html">book.rouxers.com's FB page</a></p>
+</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../intermediate/first-block.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../intermediate/cmll.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../intermediate/first-block.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../intermediate/cmll.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>
