@@ -416,4 +416,4 @@ You can see here that the two white edges on the `U` layer are already directly 
 
 The first `M' U2 M` brings one of the white edges to the `U` layer because we need to have one there to be able to execute swaps, then afterwards, we see that the edge that gets kicked out (the white-orange edge) needs to go to the back, so we can do `U2` to align the edge, then do a back swap (`M U2 M'`), then afterwards the white-red edge gets kicked out to the `U` layer, which from there, we can then align it with its position in the front with `U2`, then do a front swap (`M' U2 M`), then just do the last move to solve the rest of the cube.
 
-> This case can actually be solved by doing `M' U2 M` which directly solves both the white edges at the same time - but this isn't too important to learn for now.
+> This case can actually be solved by doing `M2 U2 M2 U2` which directly solves both the white edges at the same time - but this isn't too important to learn for now.
