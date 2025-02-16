@@ -134,7 +134,7 @@ We want to end up with `4` misoriented edges in total, which means we want to do
 </script>
 </div>
 
-If you look at the front two edges (yellow-red and yellow-white edges), you can see that by doing `M' U2 M`, they swap positions.
+If you look at the front two edges (yellow-red and white-red edges), you can see that by doing `M' U2 M`, they swap positions.
 
 <div id="frontmu2mmisoriented">
 <script type="text/javascript">
